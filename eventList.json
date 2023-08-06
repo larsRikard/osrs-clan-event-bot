@@ -1,0 +1,148 @@
+[
+    {
+        "name": "Barbarian Assault",
+        "emoji": "👹"
+    },
+    {
+        "name": "Soul Wars",
+        "emoji": "💀"
+    },
+    {
+        "name": "Last Man Standing",
+        "emoji": "🎯"
+    },
+    {
+        "name": "Guardians of the Rift",
+        "emoji": "🌌"
+    },
+    {
+        "name": "Volcanic Mine",
+        "emoji": "🌋"
+    },
+    {
+        "name": "Tempoross",
+        "emoji": "🐉"
+    },
+    {
+        "name": "Wintertodt",
+        "emoji": "🔥"
+    },
+    {
+        "name": "Zalcano",
+        "emoji": "💎"
+    },
+    {
+        "name": "Barrows",
+        "emoji": "👻"
+    },
+    {
+        "name": "Callisto",
+        "emoji": "🐻"
+    },
+    {
+        "name": "Venenatis",
+        "emoji": "🕷️"
+    },
+    {
+        "name": "Vet'ion",
+        "emoji": "🐺"
+    },
+    {
+        "name": "Nex",
+        "emoji": "❄️"
+    },
+    {
+        "name": "The Nightmare",
+        "emoji": "😴"
+    },
+    {
+        "name": "General Graardor",
+        "emoji": "💪"
+    },
+    {
+        "name": "K'rill Tsutsaroth",
+        "emoji": "👿"
+    },
+    {
+        "name": "Kree'arra",
+        "emoji": "🦅"
+    },
+    {
+        "name": "Commander Zilyana",
+        "emoji": "🌺"
+    },
+    {
+        "name": "King Black Dragon",
+        "emoji": "🐉"
+    },
+    {
+        "name": "Corporeal Beast",
+        "emoji": "👻"
+    },
+    {
+        "name": "Scorpia",
+        "emoji": "🦂"
+    },
+    {
+        "name": "Chambers of Xerics",
+        "emoji": "🐉"
+    },
+    {
+        "name": "Theatre of Blood",
+        "emoji": "🎭"
+    },
+    {
+        "name": "Tombs of Amascut",
+        "emoji": "⚱️"
+    },
+    {
+        "name": "Revenants trip",
+        "emoji": "👻"
+    },
+    {
+        "name": "Other",
+        "emoji": "❓",
+        "events": [
+            {
+                "name": "Hide and seek",
+                "emoji": "🔍"
+            },
+            {
+                "name": "Runescape Kahoot",
+                "emoji": "🎮"
+            },
+            {
+                "name": "Brimhaven Agility Arena",
+                "emoji": "👗"
+            }, 
+            {
+                "name": "Brimhaven Agility Arena",
+                "emoji": "🏃‍♂️"
+            }, 
+            {
+                "name": "Giant's Foundry",
+                "emoji": "🪨"
+            }, 
+            {
+                "name": "Castle Wars",
+                "emoji": "🏰"
+            }, 
+            {
+                "name": "Gnome Restaurant",
+                "emoji": "🍽️"
+            }, 
+            {
+                "name": "Trouble Brewing",
+                "emoji": "🍺"
+            },
+            {
+                "name": "Pest Control",
+                "emoji": "🐛"
+            }, 
+            {
+                "name": "Fishing Trawler",
+                "emoji": "🎣"
+            } 
+        ]
+    }
+]
