@@ -1,6 +1,7 @@
 import json
 import random
 
+import tabulate
 from discord.ext import commands
 
 
@@ -49,14 +50,6 @@ class Event(commands.Cog):
         for event in self.random_events:
             await sent_message.add_reaction(event["emoji"])
 
-        def check(reaction_msg):
-            return (
-                reaction_msg.author == ctx.client.user
-                and reaction_msg.id == sent_message.id
-            )
-
-        await ctx.client.wait_for("message", timeout=10.0, check=check)
-
     @vote.command(name="close", aliases=["end", "finish", "stop"])
     @commands.has_permissions(administrator=True)
     async def close_vote(self, ctx):
@@ -73,25 +66,61 @@ class Event(commands.Cog):
 
         reactions = sent_message.reactions
 
-        most_voted_event = max(reactions, key=lambda reaction: reaction.count)
-        selected_event = None
+        # Find the maximum number of votes
+        max_votes = max(reactions, key=lambda reaction: reaction.count).count
 
-        for event in self.random_events:
-            if event["emoji"] == most_voted_event.emoji:
-                selected_event = event
-                break
-
-        if selected_event:
-            await ctx.message.channel.send(
-                f"The most voted event is: {selected_event['name']}!"
+        # Find all events with the maximum number of votes
+        selected_events = [
+            event
+            for event in self.random_events
+            if any(
+                reaction.count == max_votes
+                for reaction in reactions
+                if reaction.emoji == event["emoji"]
             )
+        ]
+
+        if selected_events:
+            # Create a table to display vote results
+            table_data = [["Event", "Votes"]]
+            for event in self.random_events:
+                vote_count = sum(
+                    reaction.count
+                    for reaction in reactions
+                    if reaction.emoji == event["emoji"]
+                )
+                table_data.append([event["name"], vote_count - 1])
+
+            vote_results_table = tabulate.tabulate(
+                table_data, headers="firstrow", tablefmt="fancy_grid"
+            )
+            await ctx.message.channel.send(
+                f"Vote Results:\n```\n{vote_results_table}\n```"
+            )
+
+            if len(selected_events) == 1:
+                winner = selected_events[0]
+                vote_count = max_votes - 1
+                await ctx.message.channel.send(
+                    f"The most voted event is: **{winner['name']}** with {vote_count} vote{'s' if vote_count != 1 else ''}! {winner['emoji']}"
+                )
+            else:
+                event_names = ", ".join(
+                    f"**{event['name']}** {event['emoji']}"
+                    for event in selected_events[:-1]
+                )
+                event_names += f", and **{selected_events[-1]['name']}** {selected_events[-1]['emoji']}"
+                vote_count = max_votes - 1
+                await ctx.message.channel.send(
+                    f"The most voted events are: {event_names} with {vote_count} vote{'s' if vote_count != 1 else ''} each!"
+                )
 
             self.message_id = None
             self.random_events = None
 
             await sent_message.delete()
         else:
-            await ctx.message.channel.send("No event was voted on or event not found.")
+            await ctx.message.channel.send("No event was voted on or events not found.")
 
     @event.command(name="add", aliases=["create", "new"])
     @commands.has_permissions(administrator=True)
